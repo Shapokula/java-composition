@@ -1,5 +1,14 @@
 public class PosterManager {
     private Poster[] posters = new Poster[0];
+    private int numberOfLast;
+
+    public PosterManager() {
+        this.numberOfLast = 5;
+    }
+
+    public PosterManager(int numberOfLast) {
+        this.numberOfLast = numberOfLast;
+    }
 
     public void save(Poster item) {
         Poster[] tmp = new Poster[posters.length + 1];
@@ -16,26 +25,10 @@ public class PosterManager {
 
     public Poster[] findLast() {
         int resultLength;
-        if (posters.length <= 5) {
+        if (posters.length <= numberOfLast) {
             resultLength = posters.length;
         } else {
-            resultLength = 5;
-        }
-        Poster[] last = new Poster[resultLength];
-        for (int i = 0; i < last.length; i++) {
-            last[i] = posters[posters.length - 1 - i];
-        }
-        return last;
-    }
-
-
-    public Poster[] findLast(int numberOfPosters) {
-
-        int resultLength;
-        if (posters.length <= numberOfPosters) {
-            resultLength = posters.length;
-        } else {
-            resultLength = numberOfPosters;
+            resultLength = numberOfLast;
         }
         Poster[] last = new Poster[resultLength];
         for (int i = 0; i < last.length; i++) {

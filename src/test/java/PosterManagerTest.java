@@ -44,7 +44,7 @@ class PosterManagerTest {
 
     @Test
     public void shouldFindLastNumberSetManually() {
-        PosterManager posters = new PosterManager();
+        PosterManager posters = new PosterManager(3);
         posters.save(poster1);
         posters.save(poster2);
         posters.save(poster3);
@@ -53,7 +53,7 @@ class PosterManagerTest {
         posters.save(poster6);
 
         Poster[] expected = {poster6, poster5, poster4};
-        Poster[] actual = posters.findLast(3);
+        Poster[] actual = posters.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -74,13 +74,13 @@ class PosterManagerTest {
 
     @Test
     public void shouldFindLastNumberSetManuallyIfPostersLessThanNumber() {
-        PosterManager posters = new PosterManager();
+        PosterManager posters = new PosterManager(4);
         posters.save(poster1);
         posters.save(poster2);
 
 
         Poster[] expected = {poster2, poster1};
-        Poster[] actual = posters.findLast(4);
+        Poster[] actual = posters.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
     }
